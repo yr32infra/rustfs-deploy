@@ -7,10 +7,6 @@ services:
     restart: unless-stopped
 
     volumes:
-      - type: volume
-        source: rustfs_data
-        target: /export
-
       - type: bind
         source: /data/rustfs/data
         target: /data
