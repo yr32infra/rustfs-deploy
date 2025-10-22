@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+  rustfs:
+    image: rustfs/rustfs:1.0.0-alpha.64@sha256:11ba8ff3870e8ee88494ad5b34e6942d1d91321483895c05aa264643f6d99a94
+    hostname: rustfs
+    container_name: rustfs__rustfs
+    restart: unless-stopped
+
+    volumes:
+      - type: volume
+        source: rustfs_data
+        target: /export
+
+      - type: bind
+        source: /data/rustfs/data
+        target: /data
+
+      - type: bind
+        source: /data/rustfs/logs
+        target: /logs
+
+    networks:
+      - default
+
+    deploy:
+      resources:
+        limits:
+          memory: 8192m
+
+  cloudflared:
+    image: cloudflare/cloudflared:2025.10.0-amd64@sha256:de377b1bb1cb9298fe7153171bc60180e5cda167dc14217d82860571e6053530
+    hostname: cloudflared
+    container_name: rustfs__cloudflared
+    restart: unless-stopped
+
+    environment:
+      TUNNEL_METRICS: 0.0.0.0:9126
+      TUNNEL_LOGFILE: /dev/stdout
+
+    command: tunnel run --token ${TUNNEL_TOKEN}
+
+    networks:
+      default:
+
+    deploy:
+      resources:
+        limits:
+          memory: 4096m
+
+networks:
+  default:
+    name: rustfs__default
