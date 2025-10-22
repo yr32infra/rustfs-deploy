@@ -6,6 +6,10 @@ services:
     container_name: rustfs__rustfs
     restart: unless-stopped
 
+    environment:
+      - RUSTFS_ACCESS_KEY=root
+      - RUSTFS_SECRET_KEY=${RUSTFS_SECRET_KEY}
+
     volumes:
       - type: bind
         source: /data/rustfs/data
