@@ -28,7 +28,7 @@ services:
           memory: 8192m
 
   cloudflared:
-    image: cloudflare/cloudflared:2025.10.0-amd64@sha256:de377b1bb1cb9298fe7153171bc60180e5cda167dc14217d82860571e6053530
+    image: cloudflare/cloudflared:2025.11.1-amd64@sha256:f751174c3d8ae54b12575af320a4aa01bb3b6e61ab82aa1e4f8ecac8a079ce61
     hostname: cloudflared
     container_name: rustfs__cloudflared
     restart: unless-stopped
