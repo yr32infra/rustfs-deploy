@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   rustfs:
-    image: rustfs/rustfs::1.0.0-beta.2@sha256:0ad5dbd32ebee9c8f74c578e0fe119c728780bed46e38c5651715a4d2852854d
+    image: rustfs/rustfs:1.0.0-beta.2@sha256:0ad5dbd32ebee9c8f74c578e0fe119c728780bed46e38c5651715a4d2852854d
     hostname: rustfs
     container_name: rustfs__rustfs
     restart: unless-stopped
